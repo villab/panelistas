@@ -100,6 +100,7 @@
       <div class="field">
         <label>Dirección de residencia <span class="req">*</span></label>
         <input type="text" id="direccion" placeholder="Ej. 200 metros norte de la iglesia, casa azul">
+      </div>
     </div>
 
     <!-- SERVICIO -->
@@ -219,8 +220,8 @@
   <!-- ÉXITO -->
   <div class="success-card" id="successCard">
     <div class="success-icon">✅</div>
-    <h2>¡Respuesta enviada correctamente!</h2>
-    <p>Gracias por completar el formulario. Su información contribuye a mejorar la calidad del servicio de internet en Costa Rica.</p>
+    <h2>¡Postulación enviada correctamente!</h2>
+    <p>Gracias por completar el formulario. Evaluaremos su postulación y nos pondremos en contacto con usted a la brevedad.</p>
     <div class="summary" id="summaryBox"></div>
   </div>
 </div>
@@ -299,7 +300,7 @@ if (navigator.geolocation) {
       var acc = Math.round(pos.coords.accuracy);
       document.getElementById('latitud').value = lat;
       document.getElementById('longitud').value = lon;
-      setGeoBox('success', 'Ubicación obtenida: ' + lat + ', ' + lon + ' (precisión ±' + acc + ' m)');
+      setGeoBox('success', 'Ubicación obtenida: ' + lat + ', ' + lon + ' (precisión \u00b1' + acc + ' m)');
     },
     function(err) {
       setGeoBox('error', 'No se pudo obtener la ubicación. Puede continuar sin ella o ingresarla manualmente.');
@@ -387,8 +388,8 @@ async function enviar() {
       '👤 <strong>' + payload.nombre + '</strong><br>' +
       '📍 ' + payload.distrito + ', ' + payload.canton + ', ' + payload.provincia + '<br>' +
       '🌐 ' + payload.operador + ' · ' + payload.tipo_conexion + '<br>' +
-      '⭐ Satisfacción: ' + payload.satisfaccion + '/5<br>' +
-      (payload.latitud ? '🗺️ GPS: ' + payload.latitud + ', ' + payload.longitud : '');
+      '\u2b50 Satisfacción: ' + payload.satisfaccion + '/5<br>' +
+      (payload.latitud ? '\uD83D\uDDFA\uFE0F GPS: ' + payload.latitud + ', ' + payload.longitud : '');
     sc.scrollIntoView({ behavior: 'smooth' });
   } catch (e) {
     errEl.textContent = 'Error al enviar. Verifique su conexión e intente de nuevo.';
