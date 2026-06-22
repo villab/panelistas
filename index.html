@@ -363,7 +363,7 @@ async function enviar() {
   btn.textContent = 'Enviando...';
 
   try {
-    if (POWER_AUTOMATE_URL !== 'PEGAR_URL_POWER_AUTOMATE_AQUI') {
+    if (POWER_AUTOMATE_URL !== 'const POWER_AUTOMATE_URL = 'https://script.google.com/macros/s/AKfycbxIxK5q-R0zd1K5FA4Isq431wQJdAoLjG0hxVxco4w3TL-rPLViZOsIHWygAjsOfckzlQ/exec';') {
       await fetch(POWER_AUTOMATE_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
