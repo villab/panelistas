@@ -355,10 +355,12 @@ async function enviar() {
   btn.textContent = 'Enviando...';
 
   try {
+    var formData = new FormData();
+    formData.append('data', JSON.stringify(payload));
     await fetch(POWER_AUTOMATE_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      mode: 'no-cors',
+      body: formData
     });
     document.getElementById('formContainer').style.display = 'none';
     const sc = document.getElementById('successCard');
