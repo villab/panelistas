@@ -182,6 +182,7 @@
       </div>
       <p class="hint">Si el GPS no está disponible puede ingresar las coordenadas manualmente o dejar en blanco.</p>
     </div>
+   
     <!-- CALIDAD -->
     <div class="card">
       <div class="section-title">⭐ Calidad percibida</div>
@@ -307,8 +308,7 @@ if (navigator.geolocation) {
 }
 
 // ── Envío ────────────────────────────────────────────────────────────────────
-const POWER_AUTOMATE_URL = 'PEGAR_URL_POWER_AUTOMATE_AQUI';
-
+const POWER_AUTOMATE_URL = 'https://script.google.com/macros/s/AKfycbxIxK5q-R0zd1K5FA4Isq431wQJdAoLjG0hxVxco4w3TL-rPLViZOsIHWygAjsOfckzlQ/exec';
 async function enviar() {
   const errEl = document.getElementById('errorMsg');
   errEl.style.display = 'none';
