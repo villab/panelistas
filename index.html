@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Formulario de Calidad de Servicio de Internet</title>
+<title>Formulario de Postulación Para Medición de Calidad de Servicio de Internet Fijo - Costa Rica</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;min-height:100vh;padding:2rem 1rem}
@@ -49,8 +49,8 @@
 <body>
 <div class="container">
   <div class="header">
-    <h1>📡 Calidad de Servicio de Internet</h1>
-    <p>Complete el formulario a continuación. Su información nos ayuda a mejorar la calidad del servicio en Costa Rica.</p>
+    <h1>📡 Panelistas Medición Calidad de Servicio de Internet Fijo - Costa Rica</h1>
+    <p>Complete el formulario a continuación. Su información nos permitirá evaluar la posibilidad de ser panelista para la medición de la calidad del servicio de internet fijo en Costa Rica.</p>
   </div>
 
   <div id="formContainer">
@@ -64,11 +64,11 @@
       </div>
       <div class="row">
         <div class="field">
-          <label>Teléfono</label>
+          <label>Teléfono <span class="req">*</span></label>
           <input type="tel" id="telefono" placeholder="8888-8888">
         </div>
         <div class="field">
-          <label>Correo electrónico <span class="req">*</span></label>
+          <label>Correo electrónico</label>
           <input type="email" id="correo" placeholder="ejemplo@correo.com">
         </div>
       </div>
@@ -97,6 +97,9 @@
           </select>
         </div>
       </div>
+      <div class="field">
+        <label>Dirección de residencia <span class="req">*</span></label>
+        <input type="text" id="direccion" placeholder="Ej. 200 metros norte de la iglesia, casa azul">
     </div>
 
     <!-- SERVICIO -->
@@ -105,7 +108,7 @@
       <div class="row">
         <div class="field">
           <label>Operador <span class="req">*</span></label>
-          <select id="operador">
+          <select id="operador" onchange="toggleOtroOperador()">
             <option value="">Seleccione...</option>
             <option>Telecable</option>
             <option>Kolbi</option>
@@ -113,6 +116,7 @@
             <option>Tigo</option>
             <option>Otro</option>
           </select>
+          <input type="text" id="operadorOtro" placeholder="Indique cuál operador" style="display:none;margin-top:.5rem">
         </div>
         <div class="field">
           <label>Tipo de conexión <span class="req">*</span></label>
@@ -273,6 +277,13 @@ function setStar(v) {
   document.getElementById('starLabel').textContent = labels[v];
 }
 
+function toggleOtroOperador() {
+  var sel = document.getElementById('operador');
+  var otro = document.getElementById('operadorOtro');
+  otro.style.display = sel.value === 'Otro' ? 'block' : 'none';
+  if (sel.value !== 'Otro') otro.value = '';
+}
+
 function setGeoBox(type, msg) {
   const box = document.getElementById('geoBox');
   const icons = { loading: '🔄', success: '✅', error: '⚠️' };
@@ -307,10 +318,11 @@ async function enviar() {
 
   const campos = [
     ['nombre', 'Nombre completo'],
-    ['correo', 'Correo electrónico'],
+    ['telefono', 'Teléfono'],
     ['provincia', 'Provincia'],
     ['canton', 'Cantón'],
     ['distrito', 'Distrito'],
+    ['direccion', 'Dirección de residencia'],
     ['operador', 'Operador'],
     ['tipoConexion', 'Tipo de conexión'],
     ['velocidad', 'Velocidad contratada'],
@@ -318,6 +330,9 @@ async function enviar() {
   ];
 
   const errores = campos.filter(function(c) { return !document.getElementById(c[0]).value.trim(); }).map(function(c) { return c[1]; });
+  if (document.getElementById('operador').value === 'Otro' && !document.getElementById('operadorOtro').value.trim()) {
+    errores.push('Indique cuál operador');
+  }
   if (!starVal) errores.push('Nivel de satisfacción');
   const correo = document.getElementById('correo').value;
   if (correo && !correo.includes('@')) errores.push('Correo electrónico válido');
@@ -341,7 +356,10 @@ async function enviar() {
     provincia: document.getElementById('provincia').value,
     canton: document.getElementById('canton').value,
     distrito: document.getElementById('distrito').value,
-    operador: document.getElementById('operador').value,
+    direccion: document.getElementById('direccion').value.trim(),
+    operador: document.getElementById('operador').value === 'Otro'
+      ? 'Otro: ' + document.getElementById('operadorOtro').value.trim()
+      : document.getElementById('operador').value,
     tipo_conexion: document.getElementById('tipoConexion').value,
     velocidad_contratada: document.getElementById('velocidad').value,
     uso_principal: document.getElementById('usoPrincipal').value,
