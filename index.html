@@ -60,25 +60,7 @@
 
   <div id="formContainer">
 
-    <!-- UBICACIÓN GPS -->
-    <div class="card">
-      <div class="section-title">📍 Ubicación geográfica</div>
-      <div class="geo-box" id="geoBox">
-        <span class="geo-icon">🔄</span>
-        <span id="geoMsg">Obteniendo ubicación GPS automáticamente...</span>
-      </div>
-      <div class="row">
-        <div class="field">
-          <label>Latitud</label>
-          <input type="text" id="latitud" placeholder="Se obtiene automáticamente">
-        </div>
-        <div class="field">
-          <label>Longitud</label>
-          <input type="text" id="longitud" placeholder="Se obtiene automáticamente">
-        </div>
-      </div>
-      <p class="hint">Si el GPS no está disponible puede ingresar las coordenadas manualmente o dejar en blanco.</p>
-    </div>
+
 
     <!-- DATOS PERSONALES -->
     <div class="card">
@@ -146,10 +128,7 @@
             <option>Fibra óptica</option>
             <option>Cable</option>
             <option>DSL/ADSL</option>
-            <option>Inalámbrico fijo</option>
-            <option>4G/LTE</option>
-            <option>5G</option>
-            <option>Satelital</option>
+  
             <option>Otro</option>
           </select>
         </div>
@@ -184,7 +163,25 @@
         </div>
       </div>
     </div>
-
+    <!-- UBICACIÓN GPS -->
+    <div class="card">
+      <div class="section-title">📍 Ubicación geográfica</div>
+      <div class="geo-box" id="geoBox">
+        <span class="geo-icon">🔄</span>
+        <span id="geoMsg">Obteniendo ubicación GPS automáticamente...</span>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label>Latitud</label>
+          <input type="text" id="latitud" placeholder="Se obtiene automáticamente">
+        </div>
+        <div class="field">
+          <label>Longitud</label>
+          <input type="text" id="longitud" placeholder="Se obtiene automáticamente">
+        </div>
+      </div>
+      <p class="hint">Si el GPS no está disponible puede ingresar las coordenadas manualmente o dejar en blanco.</p>
+    </div>
     <!-- CALIDAD -->
     <div class="card">
       <div class="section-title">⭐ Calidad percibida</div>
